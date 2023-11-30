@@ -30,3 +30,70 @@ fetch('https://api.example.com/data')
     .then(data => console.log(data))
     .catch(error => console.error('Error:', error));
 ```
+
+#ajax post 
+```
+function set_session(response){
+    $.ajax({
+        url: host_url+'login/session',
+        method: 'post',
+        header: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        data: JSON.stringify(response),
+        dataType: "html",
+        success: function (data) {
+         if(data=='error'){
+            errorAlert('invalid request');
+            return false;
+         }
+          window.location.href = host_url+"home";
+        },
+        error: function (data) {
+            console.log(JSON.stringify(data));
+            errorAlert(data.statusText);
+        },
+    });
+}
+```
+
+```
+function profile() {
+	// loader();
+	$.ajax({
+		url: host_url + "_route/profile",
+		dataType: "html",
+		success: function (data) {
+			// removeLoad();
+			$("#body-profile").html(data);
+		},
+		error: function (data) {
+			console.log(JSON.stringify(data));
+			errorAlert(data.statusText);
+			// removeLoad();
+		},
+	});
+}
+```
+
+```
+function profile() {
+	// loader();
+	$.ajax({
+		url: host_url + "_route/profile",
+        method: 'post',
+		data: {old_pass: old_pass, new_pass: new_pass},
+		dataType: "html",
+		success: function (data) {
+			// removeLoad();
+			$("#body-profile").html(data);
+		},
+		error: function (data) {
+			console.log(JSON.stringify(data));
+			errorAlert(data.statusText);
+			// removeLoad();
+		},
+	});
+}
+```
