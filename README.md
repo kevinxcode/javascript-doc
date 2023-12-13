@@ -13,4 +13,8 @@ function dateShortFormat (date_data){
 }
 ```
 
+```
+<?php echo ($contract_end_date ? date('d M Y', strtotime($contract_end_date)) : null) ?>
+```
+
 
