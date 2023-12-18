@@ -1,5 +1,31 @@
 #JS POST
+```
+function groupAccess(group_token){
+				var txt_gid = $('#txt_gid').val();
+				var txt_nik = $('#txt_nik').val();
+				if($("#group_access"+group_token).is(':checked')){
+					var act_1 = 1;
+				}else{
+					var act_1 = 0;
+				}
 
+				var data = {gid: txt_gid, access: act_1}; // data to send
+				var json = JSON.stringify(data); // convert to JSON string
+				fetch("<?php echo base_url();?>setting/saveAccess_group", {
+					method: "POST", 
+					body: json
+				}) 
+				.then(function(response) {
+					return response.text(); // get response text
+				})
+				.then(function(data) {
+					console.log(data); // display response text
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+				});
+			}
+```
 ```
 const url = 'https://api.example.com/data';
 const data = { username: 'example' };
